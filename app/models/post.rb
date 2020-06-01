@@ -1,6 +1,4 @@
 class Post < ApplicationRecord
-    belongs_to :user
-    
     validates :title, presence: true
     validates :date, presence: true
     validates :time, presence: true
@@ -10,4 +8,9 @@ class Post < ApplicationRecord
     validates :report, presence: true
     
     mount_uploader :img, ImageUploader
+    
+    belongs_to :user
+    has_many :favorites
+    has_many :liked_users, through: :favorites, source: :user
+    
 end
