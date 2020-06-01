@@ -1,0 +1,53 @@
+<ul class="list-unstyled">
+  <li>
+    <li class="media mb-3">
+        <a href="#" class="mr-3">
+    　　　<img src="<%= @post.img %>" width="200px" alt="メディアの画像">
+  　　　　</a>
+      <div class="media-body">
+         <div>
+          <p>名前：<%= @user.name %></p>
+        </div>
+        <div>
+          <p>タイトル：<%= @post.title %></p>
+        </div>
+          <div>
+          <p>場所：<%= @post.address %></p>
+        </div>
+         <div>
+          <p>釣行日：<%= @post.date %></p>
+        </div>
+        <div>
+          <p>釣果：<%= @post.catch %></p>
+        </div>
+         <div>
+          <p>時間帯：<%= @post.time %></p>
+        </div>
+        <div>
+          <p>天気：<%= @post.whether %></p>
+        </div>
+        <div>
+          <p>気温：<%= @post.temperature %></p>
+        </div>
+        <div>
+          <p>水温：<%= @post.water_temperature %></p>
+        </div>
+        <div>
+          <p>潮：<%= @post.tide %></p>
+        </div>
+        <div>
+          <p>釣り方：<%= @post.fishing_style %></p>
+        </div>
+        <div>
+          <p>レポート：<%= @post.report %></p>
+        </div>
+         
+      </div>
+    </li>
+    <div>
+      <% if current_user == @post.user %>
+        <%= link_to "Delete", @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger btn-sm' %>
+      <% end %>
+    </div>
+     <%= link_to "戻る", :back %>
+</ul>

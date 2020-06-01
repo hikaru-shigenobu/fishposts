@@ -1,0 +1,57 @@
+  <% posts.each do |post| %>
+  <div class="containe border-bottom">
+    <div class="row mt-2 mb-2">
+      <div class="offset-1 col-md-3">
+        <% if post.img? %>
+        <a href="/posts/<%= post.id %>">
+          <img src="<%= post.img %>" width="150px" height="150px" alt="メディアの画像">
+        </a>
+        <% else %>
+        <a href="/posts/<%= post.id %>">
+          <image src="/assets/default.png" width="150px" height="150px" alt="メディアの画像" %>
+        </a>
+        <% end %>
+      </div>
+      <div class="col-md-8">
+          
+          <div class="row">
+             <a href="/posts/<%= post.id %>" style="color:inherit;">
+               <div class="col">
+               <i class="fas fa-map-marker-alt"></i><%= truncate(post.address, length:29) %>
+               </div>
+             </a>
+             </div>
+          
+          <div class="row">
+             <div class="col mb-1 text-muted"> 
+                &nbsp;&nbsp;<%= post.date %> UP!
+             </div>
+          </div>
+          
+          <div class="row">
+          <a href="/posts/<%= post.id %>" style="color:inherit;">
+             <div class="col font-weight-bold text-success">
+             <%= truncate(post.title) %>
+             </div>
+             </a>
+          </div>
+          
+          <div class="row">
+          <a href="/posts/<%= post.id %>" style="color:inherit;">
+             <div class="col">
+             <%= truncate(post.report, length:60) %>
+             </div>
+             </a>
+          </div>
+      </div>
+    </div>
+    <!--<div class="row ">-->
+    <!--  <div class="offset-1 col-10 visible-sm">-->
+    <!--    <%= link_to "この釣り情報の詳細をみる", post_path(post), class: 'btn btn-danger btn-block' %>-->
+    <!--  </div>-->
+    <!--</div>-->
+  </div>
+    
+  <% end %>
+  
+  <%= paginate posts %>

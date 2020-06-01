@@ -1,0 +1,76 @@
+<div class="text-center">
+  <h1>投稿</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @post, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+    
+    　<div class="form-group">
+        <%= f.label :img, '写真：' %>
+        <%= f.file_field :img, class: 'form-control' %>
+      </div>
+      
+    　<div class="form-group">
+        <%= f.label :title, 'タイトル：' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :date, '釣行日：' %>
+        <%= f.date_field :date, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :time, '時間帯：' %>
+        <%= f.select :time, [["朝", "朝"], ["昼", "昼"], ["夕方", "夕方"], ["夜", "夜"]], include_blank: "選択して下さい", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address, '場所：' %>
+        <%= f.text_field :address, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :whether, '天気：' %>
+        <%= f.select :whether, [["晴れ", "晴れ"], ["曇り", "曇り"], ["雨", "雨"], ["雪", "雪"]], include_blank: "選択して下さい", class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :temperature, '気温：' %>
+        <%= f.number_field :temperature, class: 'form-control' %>
+      </div>
+      
+       <div class="form-group">
+        <%= f.label :water_temperature, '水温：' %>
+        <%= f.number_field :water_temperature, class: 'form-control' %>
+      </div>
+      
+       <div class="form-group">
+        <%= f.label :tide, '潮：' %>
+        <%= f.select :tide, [["大潮", "大潮"], ["中潮", "中潮"], ["小潮", "小潮"], ["長潮", "長潮"], ["若潮", "若潮"]], include_blank: "選択して下さい", class: 'form-control' %>
+      </div>
+      
+       <div class="form-group">
+        <%= f.label :fishing_style, '釣り方：' %>
+        <%= f.text_field :fishing_style, class: 'form-control' %>
+      </div>
+      
+       <div class="form-group">
+        <%= f.label :catch, '釣果：' %>
+        <%= f.text_area :catch, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :report, 'レポート：' %>
+        <%= f.text_area :report, class: 'form-control' %>
+      </div>
+      
+      <div class="col-sm-6 offset-sm-5 pt-4">
+      <%= f.submit '投稿', class: 'btn btn-primary text-center' %>
+      </div>
+    <% end %>
+  </div>
+</div>
