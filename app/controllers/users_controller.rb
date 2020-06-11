@@ -21,10 +21,10 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
       session[:user_id] = @user.id
-      redirect_back(fallback_location: root_path)
+      redirect_to root_url
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
-      redirect_back(fallback_location: root_path)
+      render :new
     end
   end
   
