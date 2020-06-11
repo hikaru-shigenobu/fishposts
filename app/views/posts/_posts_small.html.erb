@@ -2,7 +2,7 @@
   <div class="containe">
     <div class="row">
       <% posts.each do |post| %>
-        <div class="col-md-6 col-lg-4 p-2">
+        <div class="col-md-6 p-2">
           <div class="bg-light">
             <div class="articles div-link p-2">
               <a class="link" href="/posts/<%= post.id %>"></a>
@@ -26,4 +26,3 @@
   </div>
   
   <%= paginate posts %>
-  

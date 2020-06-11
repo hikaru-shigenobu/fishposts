@@ -1,54 +1,128 @@
-<ul class="list-unstyled">
-  <li>
-    <li class="media mb-3">
-        <a href="#" class="mr-3">
-    　　　<img src="<%= @post.img %>" width="200px" alt="メディアの画像">
-  　　　　</a>
-      <div class="media-body">
-         <div>
-          <p>名前：<%= @user.name %></p>
+  <div class="container">
+    <h1 class="bg-colour p-2"><i class="fas fa-angle-double-right my-orange"></i>&nbsp;<%= @post.title %></h1>
+      <div class="row">
+        <div class="col-md-7">
+          <div class="img">
+             <% if @post.images? %>
+              <%= image_tag @post.images[0].url, width: "100%", height: "385px", alt: "メディアの画像" %>
+              <% else %>
+                <img src="/assets/default.png" width="100%" height="285px" alt="メディアの画像" %>
+              <% end %>
+            <table class="table table_border_radius mt-2">
+              <tr>
+                <td class="align-middle"><a href="/users/<%= @user.id %>"><i class="fas fa-user my-orange"></i>&nbsp;<%= @user.name %>&nbsp;様&nbsp;&nbsp;&nbsp;投稿記事</a></td>
+                <td><%= render 'favorites/follow_button', post: @post %></td>
+              </tr>
+            </table>
+          </div>
         </div>
-        <div>
-          <p>タイトル：<%= @post.title %></p>
+        <div class="col-md-5 pl-0">
+          <table class="table table-bordered table_border_radius pl-3 pr-3">
+            <tr>
+              <td><i class="fas fa-map-marker-alt my-orange"></i>&nbsp;場所</td>
+            </tr>
+            <tr>
+              <td><%= @post.address %></td>
+            </tr>
+          </table>
+          <div class="container">
+            <div class="row">
+              <table class="col-6 table table_border_radius width">
+                  <tr>
+                    <td><i class="fas fa-walking my-orange"></i>&nbsp;釣行日</td>
+                  </tr>
+                  <tr>
+                    <td><%= @post.date %></td>
+                  </tr>
+              </table>
+              <table class="col-6 table table_border_radius">
+                  <tr>
+                    <td><i class="far fa-clock my-orange"></i>&nbsp;時間帯</td>
+                  </tr>
+                  <tr>
+                    <td><%= @post.time %></td>
+                  </tr>
+              </table>
+              
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <table class="col-6 table table_border_radius">
+                  <tr>
+                     <td><i class="fas fa-temperature-low my-orange"></i>&nbsp;気温</td>
+                  </tr>
+                  <tr>
+                    <td><%= @post.temperature||= "ー" %>°</td>
+                  </tr>
+              </table>
+              <table class="col-6 table table_border_radius">
+                  <tr>
+                   <td><i class="fas fa-temperature-low my-orange"></i>&nbsp;水温</td>
+                  </tr>
+                  <tr>
+                    <td><%= @post.water_temperature||= "ー" %>°</td>
+                  </tr>
+              </table>
+              
+            </div>
+          </div>
+           <div class="container">
+            <div class="row">
+              <table class="col-6 table table_border_radius">
+                  <tr>
+                    <td><i class="fas fa-sun my-orange"></i>&nbsp;天気</td>
+                  </tr>
+                  <tr>
+                    <td><%= @post.whether %></td>
+                  </tr>
+              </table>
+              <table class="col-6 table table_border_radius">
+                  <tr>
+                   <td><i class="fas fa-water my-orange"></i>&nbsp;潮</td>
+                  </tr>
+                  <tr>
+                    <td><%= @post.tide %></td>
+                  </tr>
+              </table>
+            </div>
+          </div>
         </div>
-          <div>
-          <p>場所：<%= @post.address %></p>
-        </div>
-         <div>
-          <p>釣行日：<%= @post.date %></p>
-        </div>
-        <div>
-          <p>釣果：<%= @post.catch %></p>
-        </div>
-         <div>
-          <p>時間帯：<%= @post.time %></p>
-        </div>
-        <div>
-          <p>天気：<%= @post.whether %></p>
-        </div>
-        <div>
-          <p>気温：<%= @post.temperature %></p>
-        </div>
-        <div>
-          <p>水温：<%= @post.water_temperature %></p>
-        </div>
-        <div>
-          <p>潮：<%= @post.tide %></p>
-        </div>
-        <div>
-          <p>釣り方：<%= @post.fishing_style %></p>
-        </div>
-        <div>
-          <p>レポート：<%= @post.report %></p>
-        </div>
-         
+      </div> 
+        
+          <table class="table table-bordered table_border_radius pl-3 pr-3">
+            <tr>
+              <td><i class="fas fa-fish my-orange"></i>&nbsp;釣果</td>
+            </tr>
+            <tr>
+              <td><%= @post.catch %></td>
+            </tr>
+          </table>
+          <table class="table table-bordered table_border_radius pl-3 pr-3">
+            <tr>
+              <td><i class="far fa-question-circle my-orange"></i>&nbsp;釣り方</td>
+            </tr>
+            </thead>
+            <tr>
+              <td><%= @post.fishing_style %></td>
+            </tr>
+          </table>
+          <table class="table table-bordered table_border_radius pl-3 pr-3">
+            <tr>
+              <td><i class="far fa-file-alt my-orange"></i>&nbsp;レポート</td>
+            </tr>
+            </thead>
+            <tr>
+              <td><%= @post.report %></td>
+            </tr>
+          </table>
+          <% if current_user == @post.user %>
+            <%= link_to "編集", edit_post_path(@post), class: 'btn btn-primary btn-lg btn-block' %>
+            <%= link_to "削除", @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger btn-lg btn-block' %>
+          <% end %>
+          <%= link_to "戻る", :back %>
+       </div>
       </div>
-    </li>
-    <div>
-      <% if current_user == @post.user %>
-        <%= link_to "Delete", @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger btn-sm' %>
-      <% end %>
-    </div>
-    <%= render 'favorites/follow_button', post: @post %>
-     <%= link_to "戻る", :back %>
-</ul>
+    
+   
+     

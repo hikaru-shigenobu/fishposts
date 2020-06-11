@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.string :img
       t.string :title
-      t.date :date
+      t.string :date
       t.string :time
       t.string :address
       t.string :whether

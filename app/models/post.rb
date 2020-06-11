@@ -6,8 +6,11 @@ class Post < ApplicationRecord
     validates :fishing_style, presence: true
     validates :catch, presence: true
     validates :report, presence: true
+    validates :address, presence: true
+    validates :tide, presence: true
     
-    mount_uploader :img, ImageUploader
+    mount_uploaders :images, ImageUploader
+    serialize :images, JSON 
     
     belongs_to :user
     has_many :favorites
