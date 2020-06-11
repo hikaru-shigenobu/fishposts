@@ -46,9 +46,8 @@ class PostsController < ApplicationController
   
   def search
     if params[:search].present?
-      @posts = Post.where('title LIKE :word OR date LIKE :word OR time LIKE :word OR address LIKE :word OR whether LIKE :word OR temperature LIKE :word OR water_temperature LIKE :word OR tide LIKE :word OR fishing_style LIKE :word OR catch LIKE :word OR report LIKE :word', word: "%#{params[:search]}%"
+      @posts = Post.where('title LIKE :word OR date LIKE :word OR time LIKE :word OR address LIKE :word OR whether LIKE :word OR temperature LIKE :word OR water_temperature LIKE :word OR tide LIKE :word OR fishing_style LIKE :word OR catch LIKE :word OR report LIKE :word', word: "%#{params[:search]}%")
       render 'posts/search'
-      
     else
       @posts = Post.none
     end
