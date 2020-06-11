@@ -8,8 +8,8 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :time
       t.string :address
       t.string :whether
-      t.integer :temperature
-      t.integer :water_temperature
+      t.string :temperature
+      t.string :water_temperature
       t.string :tide
       t.text :fishing_style
       t.text :catch
