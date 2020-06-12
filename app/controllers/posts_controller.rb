@@ -5,6 +5,13 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user    
+    # if params[:page_type] == 'search'
+    #   @back_url = search_path_path
+    # elsif yyyy
+    #       @back_url = xxx_path()
+    # else
+    #   @back_url = root_path
+    # end
   end
 
   def new
@@ -46,8 +53,8 @@ class PostsController < ApplicationController
   
   def search
     if params[:search].present?
-      @posts = Post.where('title::varchar LIKE :word OR date::varchar LIKE :word OR time::varchar LIKE :word OR address::varchar LIKE :word OR whether::varchar LIKE :word OR temperature::varchar LIKE :word OR water_temperature::varchar LIKE :word OR tide::varchar LIKE :word', word: "%#{params[:search]}%")
-      #@posts = Post.where('title LIKE :word', word: "%#{params[:search]}%")
+      @posts = Post.where('title::varchar LIKE :word OR date::varchar LIKE :word OR time::varchar LIKE :word OR address::varchar LIKE :word OR whether::varchar LIKE :word OR temperature::varchar LIKE :word OR water_temperature::varchar LIKE :word OR tide::varchar LIKE :word OR fishing_style::varchar LIKE :word OR catch::varchar LIKE :word OR report::varchar LIKE :word', word: "%#{params[:search]}%")
+      # @posts = Post.where('title LIKE :word OR date LIKE :word OR time LIKE :word OR address LIKE :word OR whether LIKE :word OR temperature LIKE :word OR water_temperature LIKE :word OR tide LIKE :word OR fishing_style LIKE :word OR catch LIKE :word OR report LIKE :word', word: "%#{params[:search]}%")
       render 'posts/search'
     else
       @posts = Post.none
