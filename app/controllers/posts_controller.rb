@@ -64,7 +64,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit({images: []}, :title, :date, :time, :address, :whether, :temperature, :water_temperature, :tide, :fishing_style, :catch, :report)
+    params.require(:post).permit(:image, :title, :date, :time, :address, :whether, :temperature, :water_temperature, :tide, :fishing_style, :catch, :report)
   end
   
   def correct_user

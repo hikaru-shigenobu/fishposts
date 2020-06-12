@@ -9,8 +9,7 @@ class Post < ApplicationRecord
     validates :address, presence: true
     validates :tide, presence: true
     
-    mount_uploaders :images, ImageUploader
-    serialize :images, JSON 
+    mount_uploader :image, ImageUploader
     
     belongs_to :user
     has_many :favorites
