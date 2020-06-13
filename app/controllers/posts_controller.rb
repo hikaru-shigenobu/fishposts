@@ -58,6 +58,7 @@ class PostsController < ApplicationController
       render 'posts/search'
     else
       @posts = Post.none
+      flash.now[:danger] = '検索結果なし。'
     end
   end
   
