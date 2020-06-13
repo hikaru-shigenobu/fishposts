@@ -1,12 +1,12 @@
 class Post < ApplicationRecord
-    validates :title, presence: true
+    validates :title, presence: true, length: { maximum: 50 }
     validates :date, presence: true
     validates :time, presence: true
     validates :whether, presence: true
-    validates :fishing_style, presence: true
-    validates :catch, presence: true
-    validates :report, presence: true
-    validates :address, presence: true
+    validates :fishing_style, presence: true, {lengh: {maximum: 140}}
+    validates :catch, presence: true, {lengh: {maximum: 140}}
+    validates :report, presence: true, length: { maximum: 3000 }
+    validates :address, presence: true, length: { maximum: 50 }
     validates :tide, presence: true
     
     mount_uploader :image, ImageUploader
